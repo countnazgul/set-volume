@@ -21,7 +21,7 @@ func main() {
 	}
 
 	// when setting specific volume value
-	if !strings.Contains(args[1], ":") {
+	if !strings.Contains(args[1], ",") {
 		argVolumeValue, err := strconv.Atoi(args[1])
 		if err != nil {
 			fmt.Printf(
@@ -34,8 +34,8 @@ func main() {
 	}
 
 	// when want to "cycle" between two possible values
-	if strings.Contains(args[1], ":") {
-		cycleValues := strings.Split(args[1], ":")
+	if strings.Contains(args[1], ",") {
+		cycleValues := strings.Split(args[1], ",")
 
 		v := make([]int, len(cycleValues))
 

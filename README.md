@@ -13,11 +13,11 @@ Mostly used together with [PowerToys](https://learn.microsoft.com/en-us/windows/
 
 ## Range of values
 
-It is possible to pass range of values and the app will set the volume to the closest (higher) value based on the current system value. The range values are separated with `:`
+It is possible to pass range of values and the app will set the volume to the closest (higher) value based on the current system value. The range values are separated with `,`
 
 Imagine that the current volume is `25`. Then the command below will set it to `60`. `60` is the next bigger number to `25`:
 
-`.\set-volume 10:12:14:60:70:90`
+`.\set-volume 10,12,14,60,70,90`
 
 Having the volume to `60` if we execute the same command the system volume will be set to `70`.
 Running it again - `90`.
@@ -36,7 +36,7 @@ The whole idea of this app was to be used with [PowerToys](https://learn.microso
 
   - `Action` - `Run program`
   - `App` - the full path to `set-volume.exe`
-  - `Args` - either single value (for example `20`) or range of values to loop. Separated by `:` (for example `10:12:14:60:70:100`)
+  - `Args` - either single value (for example `20`) or range of values to loop. Separated by `,` (for example `10,12,14,60,70,100`)
   - `Start in` - (not sure its needed but ..) the folder where `set-volume.exe` is located
   - `Elevation` - `Normal`
   - `If running` - `Close`
