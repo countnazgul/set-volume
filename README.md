@@ -43,7 +43,6 @@ The whole idea of this app was to be used with [PowerToys](https://learn.microso
   - `Visibility` - `Hidden`
 
     ![PowerToys config](./assets/powertoys_setup.png)
-
   - press `OK`
 
 And thats it! (thinking about the screenshot above) if we now start pressing ``Ctrl + ` `` the volume will change between 10 -> 12 -> 14 -> 60 -> 70 -> 100 -> 10 ...
