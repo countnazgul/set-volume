@@ -23,6 +23,17 @@
             "args": [
                 "14,12,60,30"
             ]
+        },
+        {
+            "name": "Set range value (desc)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "main.go",
+            "args": [
+                "14,12,60,30",
+                "desc"
+            ]
         }
     ]
 }

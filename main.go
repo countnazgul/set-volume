@@ -12,6 +12,7 @@ import (
 
 func main() {
 	volumeToSet := 0
+	isAscending := true
 
 	args := os.Args
 
@@ -31,6 +32,15 @@ func main() {
 		}
 
 		volumeToSet = argVolumeValue
+	}
+
+	// second optional parameter to define the order of
+	if len(args) > 2 {
+		if args[2] != "" {
+			if strings.ToLower(args[2]) == "desc" {
+				isAscending = false
+			}
+		}
 	}
 
 	// when want to "cycle" between two possible values
@@ -57,11 +67,14 @@ func main() {
 			v[i] = a
 		}
 
-		// sort the values in asc order ... just in case
-		sort.Ints(v[:])
+		if !isAscending {
+			sort.Sort(sort.Reverse(sort.IntSlice(v)))
+		} else {
+			sort.Ints(v[:])
+		}
 
 		// get the new volume value
-		volumeToSet = findNextVolume(&v)
+		volumeToSet = findNextVolume(&v, isAscending)
 	}
 
 	// set the volume to the new value
@@ -83,7 +96,7 @@ func main() {
 
 // Find the next volume value in the provided list and return it
 // if no value is found then return the first
-func findNextVolume(values *[]int) int {
+func findNextVolume(values *[]int, isAscending bool) int {
 	// get the current actual volume
 	vol, err := volume.GetVolume()
 	if err != nil {
@@ -91,20 +104,35 @@ func findNextVolume(values *[]int) int {
 		os.Exit(1)
 	}
 
-	newVolume := 0
+	// set the new volume to unreal value
+	// at the end check if the new volume is still unreal
+	// and if yes, then set the new volume to the first
+	// provided value.
+	newVolume := -1
 
 	// loop through the values and if the current volume value
 	// is lower than the current iteration value then stop the loop
 	// and return the current iteration value
 	// on the next run of the program the next iteration will be returned
 	for _, v := range *values {
-		if vol < v {
-			newVolume = v
-			break
+
+		// is the volume should go up
+		// then check iv the current volume is less than the
+		// current iteration volume. Else check for the opposite
+		if isAscending {
+			if vol < v {
+				newVolume = v
+				break
+			}
+		} else {
+			if vol > v {
+				newVolume = v
+				break
+			}
 		}
 	}
 
-	if newVolume == 0 {
+	if newVolume == -1 {
 		newVolume = (*values)[0]
 	}
 

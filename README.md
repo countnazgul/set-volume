@@ -23,6 +23,15 @@ Having the volume to `60` if we execute the same command the system volume will 
 Running it again - `90`.
 Running it again `10` - when the current volume is equal or greater than the max range value, from the list, the app will set the volume to the lowest from the list/range. This way we can loop through pre-defined volume levels with ease.
 
+### Ascending/descending order
+
+When using range of values the app accepts second (optional) parameter. This parameter defines how to cycle through the values - in ascending or descending order.
+
+The possible values are `acs` and `desc`
+
+> [!NOTE]
+> If this parameter is not provided then default value will be set - `asc`
+
 ## PowerToys
 
 The whole idea of this app was to be used with [PowerToys](https://learn.microsoft.com/en-us/windows/powertoys/). In there we can remap shortcut to run a program.
@@ -36,7 +45,7 @@ The whole idea of this app was to be used with [PowerToys](https://learn.microso
 
   - `Action` - `Run program`
   - `App` - the full path to `set-volume.exe`
-  - `Args` - either single value (for example `20`) or range of values to loop. Separated by `,` (for example `10,12,14,60,70,100`)
+  - `Args` - either single value (for example `20`) or range of values to loop. Separated by `,` (for example `10,12,14,60,70,100` or `10,12,14,60,70,100 desc`)
   - `Start in` - (not sure its needed but ..) the folder where `set-volume.exe` is located
   - `Elevation` - `Normal`
   - `If running` - `Close`
@@ -46,3 +55,6 @@ The whole idea of this app was to be used with [PowerToys](https://learn.microso
   - press `OK`
 
 And thats it! (thinking about the screenshot above) if we now start pressing ``Ctrl + ` `` the volume will change between 10 -> 12 -> 14 -> 60 -> 70 -> 100 -> 10 ...
+
+> [!NOTE]
+> if `desc` is provided as a second parameter then the order will be reversed
