@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/gen2brain/beeep"
 	"github.com/itchyny/volume-go"
 )
 
@@ -19,6 +20,27 @@ func main() {
 	if len(args) == 1 {
 		fmt.Printf("Please provide new volume value")
 		os.Exit(1)
+	}
+
+	if len(args) == 2 && args[1] == "show" {
+		vol, err := volume.GetVolume()
+		if err != nil {
+			fmt.Printf("get volume failed: %+v", err)
+			os.Exit(1)
+		}
+
+		fmt.Printf("Current volume: %s", strconv.Itoa(vol))
+
+		err = beeep.Notify(
+			"Current volume value",
+			strconv.Itoa(vol),
+			"assets/audio-speaker.png",
+		)
+		if err != nil {
+			panic(err)
+		}
+
+		os.Exit(0)
 	}
 
 	// when setting specific volume value
