@@ -32,6 +32,14 @@ The possible values are `acs` and `desc`
 > [!NOTE]
 > If this parameter is not provided then default value will be set - `asc`
 
+### Show current volume
+
+To view the current volume level run:
+
+`.\set-volume show`
+
+This will print the current volume in the console and as OS notification
+
 ## PowerToys
 
 The whole idea of this app was to be used with [PowerToys](https://learn.microsoft.com/en-us/windows/powertoys/). In there we can remap shortcut to run a program.
